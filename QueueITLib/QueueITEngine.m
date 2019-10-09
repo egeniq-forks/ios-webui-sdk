@@ -97,10 +97,11 @@ static int INITIAL_WAIT_RETRY_SEC = 1;
     
     self.requestInProgress = YES;
 
-    if (self.enqueueFromCache && ![self tryShowQueueFromCache]) {
-        [self tryEnqueue];
+    if (self.enqueueFromCache && [self tryShowQueueFromCache] ) {
+        return;
     }
-    
+
+    [self tryEnqueue];
 }
 
 -(BOOL)tryShowQueueFromCache
