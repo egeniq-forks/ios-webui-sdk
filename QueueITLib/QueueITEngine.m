@@ -38,6 +38,7 @@ static int INITIAL_WAIT_RETRY_SEC = 1;
         self.eventId = eventOrAliasId;
         self.layoutName = layoutName;
         self.language = language;
+        self.enqueueFromCache = true;
         self.presentationStyle = UIModalPresentationFullScreen;
         self.delayInterval = 0;
         self.isInQueue = NO;
@@ -95,8 +96,8 @@ static int INITIAL_WAIT_RETRY_SEC = 1;
     }
     
     self.requestInProgress = YES;
-    
-    if (![self tryShowQueueFromCache]) {
+
+    if (self.enqueueFromCache && ![self tryShowQueueFromCache]) {
         [self tryEnqueue];
     }
     
